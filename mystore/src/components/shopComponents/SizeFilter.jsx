@@ -1,6 +1,6 @@
 export const SizeFilter = () => {
   return (
-    <div>
+    <div className="dark:text-white">
       <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
         Tamanho
       </h3>

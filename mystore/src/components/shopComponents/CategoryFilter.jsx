@@ -1,6 +1,6 @@
 export const CategoryFilter = () => {
   return (
-    <div>
+    <div className="dark:text-white">
       <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">Categoria</h3>
       <div className="space-y-2">
         <label className="flex items-center">
