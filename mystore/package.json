@@ -24,6 +24,7 @@
     "vite": "^5.3.3"
   },
   "dependencies": {
-    "react-router-dom": "^6.24.1"
+    "react-router-dom": "^6.24.1",
+    "vercel": "^34.3.1"
   }
 }
