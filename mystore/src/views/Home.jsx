@@ -9,7 +9,6 @@ import Testimonials from "../components/homeComponents/Testimonials";
 export function Home() {
   const getCats = async () => {
     const cats = await getCategories();
-    console.log(cats);
   };
   useEffect(() => {
     getCats();

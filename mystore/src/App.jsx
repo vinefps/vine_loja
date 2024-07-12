@@ -5,6 +5,7 @@ import { About } from "./views/About";
 import { Shop } from "./views/Shop";
 import { Contact } from "./views/Contact";
 import { Products } from "./views/Products";
+import { CartProvider } from './contexts/CartProvider';
 import NavBar from "./components/genericComponents/NavBar";
 import Footer from "./components/genericComponents/Footer";
 

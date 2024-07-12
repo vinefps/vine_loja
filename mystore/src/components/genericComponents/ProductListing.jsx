@@ -28,20 +28,16 @@ const ProductListing = () => {
           Produtos em Destaque
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {womenProducts.map((produto) => (
+          {womenProducts.map((product, index) => (
             <ProductCard
-              key={produto.id}
-              imgSrc={produto.image}
-              title={produto.title}
-              price={produto.price}
+              key={product.id}
+              product={product}
             />
           ))}
-          {menProducts.map((produto) => (
+          {menProducts.map((product, index) => (
             <ProductCard
-              key={produto.id}
-              imgSrc={produto.image}
-              title={produto.title}
-              price={produto.price}
+              key={product.id}
+              product={product}
             />
           ))}
         </div>

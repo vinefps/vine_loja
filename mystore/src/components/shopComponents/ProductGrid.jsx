@@ -3,11 +3,43 @@ import {
   getWomenCategory,
   getMenCategory,
 } from "../../controllers/ProductController";
-import { useState, useEffect } from "react";
+import { useState, useEffect, } from "react";
+import { useCartContext } from "../../contexts/CartProvider";
 
 export const ProductGrid = () => {
   const [womenProducts, setWomenProducts] = useState([]);
   const [menProducts, setMenProducts] = useState([]);
+  const { cartItems, setItems } = useCartContext();
+
+  function handleAddItem({ id, image, title, price }) {
+    const name = title.split(' ').slice(0, 3).join(' ')
+    const itemCart = {
+      id,
+      image,
+      name,
+      price,
+      quantity: 1
+    }
+    const haveItem = cartItems.find((item) => {
+      return item.id === id
+    })
+
+    if (haveItem) {
+      setItems((prev) => prev.map((item) => {
+        if (item.id === itemCart.id) {
+          return { ...item, quantity: item.quantity + 1 };
+        } else {
+          return item;
+        }
+      }));
+    } else {
+      setItems((prev) => [...prev, itemCart]);
+    }
+  }
+  useEffect(() => {
+    console.log(cartItems);
+  }, [cartItems]);
+
 
   const loadProducts = async () => {
     const res = await getWomenCategory();
@@ -18,6 +50,7 @@ export const ProductGrid = () => {
 
   useEffect(() => {
     loadProducts();
+    console.log(womenProducts, menProducts)
   }, []);
 
   return (
@@ -26,17 +59,15 @@ export const ProductGrid = () => {
         {womenProducts.map((product, index) => (
           <ProductCard
             key={index}
-            imgSrc={product.image}
-            title={product.title}
-            price={product.price}
+            product={product}
+            handleAddItem={handleAddItem}
           />
         ))}
         {menProducts.map((product, index) => (
           <ProductCard
             key={index}
-            imgSrc={product.image}
-            title={product.title}
-            price={product.price}
+            product={product}
+            handleAddItem={handleAddItem}
           />
         ))}
       </div>

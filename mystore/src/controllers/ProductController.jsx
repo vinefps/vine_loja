@@ -12,7 +12,7 @@ export async function getProducts() {
   }
 }
 
-//-----------------------
+//-----------------------------
 export async function getSpecificProducts(id) {
   try {
     const response = await fetch(`https://fakestoreapi.com/products/${id}`);
