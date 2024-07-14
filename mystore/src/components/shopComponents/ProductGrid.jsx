@@ -4,15 +4,15 @@ import {
   getMenCategory,
 } from "../../controllers/ProductController";
 import { useState, useEffect, } from "react";
-import { useCartContext } from "../../contexts/CartProvider";
+import { useCartContext } from "../../contexts/CartProvider";      //USANDO O HOOK DO CONTEXT
 
 export const ProductGrid = () => {
   const [womenProducts, setWomenProducts] = useState([]);
   const [menProducts, setMenProducts] = useState([]);
-  const { cartItems, setItems } = useCartContext();
+  const { cartItems, setItems } = useCartContext();                //DESESTRUTURANDO O CONTEXT
 
   function handleAddItem({ id, image, title, price }) {
-    const name = title.split(' ').slice(0, 3).join(' ')
+    const name = title.split(' ').slice(0, 3).join(' ')            //REDUZINDO O TAMANHO DO NOME DO ITEM
     const itemCart = {
       id,
       image,
@@ -33,9 +33,13 @@ export const ProductGrid = () => {
         }
       }));
     } else {
-      setItems((prev) => [...prev, itemCart]);
+      setItems((prev) => [...prev, itemCart]); //FORMA CORRETA DE ADICIONAR UM NOVO ITEM
+      // const newList = [...cartItems, itemCart]
+      // setItems(newList);                       FORMA "ERRADA" DE ADICIONAR UM NOVO ITEM
     }
   }
+
+
   useEffect(() => {
     console.log(cartItems);
   }, [cartItems]);
