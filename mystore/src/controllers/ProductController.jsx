@@ -74,3 +74,36 @@ export async function getMenCategory() {
     throw error;
   }
 }
+//-------------------------------------
+export async function getEletronicCategory() {
+  try {
+    const response = await fetch(
+      "https://fakestoreapi.com/products/category/eletronics",
+    );
+    if (!response.ok) {
+      throw new Error("Erro ao buscar os produtos");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+//=====================================--
+export async function getJeweleryCategory() {
+  try {
+    const response = await fetch(
+      "https://fakestoreapi.com/products/category/jewelery",
+    );
+    if (!response.ok) {
+      throw new Error("Erro ao buscar os produtos");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
