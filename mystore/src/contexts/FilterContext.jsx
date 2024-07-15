@@ -12,6 +12,8 @@ export function FilterProvider({ children }) {
   const [menFilterCategory, setMenCategory] = useState(false);
   const [eletronicFilterCategory, setEletronicCategory] = useState(false);
   const [jeweleryFilterCategory, setJewleryCategory] = useState(false);
+  const [priceFilter, setPriceFilter] = useState(200);
+  const [sizeFilter, setSizeFilter] = useState('');
 
   const CheckBoxFilter = {
     women: {
@@ -29,11 +31,19 @@ export function FilterProvider({ children }) {
     jewelery: {
       jeweleryFilterCategory,
       setJewleryCategory
-    }
+    },
   };
+  const FilterPrice = {
+    priceFilter,
+    setPriceFilter
+  }
+  const FilterSize = {
+    sizeFilter,
+    setSizeFilter
+  }
 
   return (
-    <FilterContext.Provider value={{ CheckBoxFilter }}>
+    <FilterContext.Provider value={{ CheckBoxFilter, FilterPrice, FilterSize }}>
       {children}
     </FilterContext.Provider>
   );
