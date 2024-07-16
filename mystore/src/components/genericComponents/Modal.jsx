@@ -36,20 +36,20 @@ export function Modal({ handleOpenModal }) {
 
 
     //FORMA CERTA DE FILTRAR:
-    function removeQuantity(number){
-        setStatus((prev) =>{           //Sempre que altero o estado de uma State, o compoente é renderizado novamente.
-            return !prev
+    function removeQuantity(sendItem){
+        setStatus((prev) =>{           //Sempre que altero o estado de uma State, o componente é renderizado novamente.
+            return !prev                //Quero que aconteça, para o número da quantidade de itens, atualize caso eu + ou -;
         });
 
         const specificItem = cartItems.find((item)=>{
-            if(item.id === number){
+            if(item.id === sendItem.id && item.size === sendItem.size){
                 return item
             }
         })
 
         if(specificItem.quantity > 1){
             cartItems.find((item)=>{
-                if(item.id === specificItem.id){
+                if(item.id === specificItem.id && item.size === specificItem.size){
                     item.quantity--;
                 }
             })
@@ -64,12 +64,12 @@ export function Modal({ handleOpenModal }) {
          console.log(cartItems)
 
     }
-    function addQuantity(number){
+    function addQuantity(sendItem){  //obs: Estou recebendo o proprio objeto ao invés somente do id, pois tenho que fazer 2 validações: id e tamanho
         setStatus((prev) =>{
             return !prev
         })
         cartItems.find((item) =>{
-            if(item.id === number){
+            if(item.id === sendItem.id && item.size === sendItem.size){
                 item.quantity++
             }
         })
@@ -93,15 +93,16 @@ export function Modal({ handleOpenModal }) {
                         <div className="ml-4">
                             <div className="tracking-tight font-extrabold text-gray-900 dark:text-white">{item.name}</div>
                             <div>{`Price: ${item.price}`}</div>
+                            <div>{`Size: ${item.size}`}</div>
                         </div>
                         <div className="flex items-center">
-                            <button className="text-gray-500 focus:outline-none focus:text-gray-600" onClick={() => removeQuantity(item.id)}>
+                            <button className="text-gray-500 focus:outline-none focus:text-gray-600" onClick={() => removeQuantity(item)}> 
                                 <svg className="h-5 w-5" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                                     <path d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                             </button>
                             <span className="text-gray-700 dark:text-gray-300 mx-2">{item.quantity}</span>
-                            <button className="text-gray-500 focus:outline-none focus:text-gray-600" onClick={() => addQuantity(item.id)}>
+                            <button className="text-gray-500 focus:outline-none focus:text-gray-600" onClick={() => addQuantity(item)}>
                                 <svg className="h-5 w-5" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                                     <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>

@@ -23,7 +23,7 @@ export const PriceFilter = () => {
         <span>R$0</span>
         <span>R$200</span>
       </div>
-      <p>Valor selecionado: R${FilterPrice.priceFilter}</p>
+      <p className='dark:text-white'>Valor selecionado: R${FilterPrice.priceFilter}</p>
     </div>
   );
 };

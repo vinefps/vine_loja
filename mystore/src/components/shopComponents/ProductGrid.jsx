@@ -22,11 +22,11 @@ export const ProductGrid = () => {
       size:FilterSize.sizeFilter
     };
     if (FilterSize.sizeFilter !== '') {
-      const haveItem = cartItems.find((item) => item.id === id);
+      const haveItem = cartItems.find((item) => item.id === id && item.size === itemCart.size);  //Verifica se o item clicado para compra é o mesmo id e tamanho
 
       if (haveItem) {
         setItems((prev) => prev.map((item) => {
-          if (item.id === itemCart.id && FilterSize.sizeFilter === haveItem.size) {
+          if (item.id === itemCart.id && item.size === itemCart.size) {
             return { ...item, quantity: item.quantity + 1 };
           } else {
             return item;
@@ -34,12 +34,12 @@ export const ProductGrid = () => {
         }));
       } else {
         setItems((prev) => [...prev, itemCart]);
-        FilterSize.setSizeFilter('');
+       
       }
     }else{
       alert("SELECIONE UM TAMANHO")
     }
-
+     FilterSize.setSizeFilter('');
   }
   //MOSTRAR ITENS NO CARRINHO:
   useEffect(() => {
