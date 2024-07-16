@@ -1,13 +1,17 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import { useFilterProvider } from '../../contexts/FilterContext';
+import { SucessAlert } from '../genericComponents/SucessAlert';
 
 export const SizeFilter = () => {
   const { FilterSize } = useFilterProvider();
+  const [showAlert, setShowAlert] = useState(false);
 
   function handleSetSize(size) {
-    FilterSize.setSizeFilter(size)
-    alert("TAMANHO DISPONÍVEL")
+    FilterSize.setSizeFilter(size);
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 2000); // Oculta o alerta após 2 segundos
   }
+
   return (
     <div className="dark:text-white">
       <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
@@ -33,6 +37,7 @@ export const SizeFilter = () => {
           XXL
         </button>
       </div>
+      {showAlert && <SucessAlert title="Tamanho Disponível!"/>}
     </div>
   );
 };

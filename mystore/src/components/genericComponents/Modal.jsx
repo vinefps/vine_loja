@@ -1,11 +1,13 @@
 import { Button } from '../genericComponents/Button';
 import { useCartContext } from '../../contexts/CartProvider';
 import { useEffect, useState } from 'react';
+import { FailAlert } from './FailAlert';
 
 export function Modal({ handleOpenModal }) {
     const { cartItems, setItems } = useCartContext();
     const [totalPrice, setTotal] = useState(0)
     const [itemStatus, setStatus] = useState(true);
+    const [cartItemStatus, setItemStatus] = useState(false);
 
     //aprendendo o overFlow:
     const maxItemsBeforeScroll = 3;
@@ -57,9 +59,14 @@ export function Modal({ handleOpenModal }) {
 
         }else if(specificItem.quantity === 1){
            setItems((prev) => prev.filter((item)=>{
-                return item.id !== specificItem.id
+                if(item.size !== specificItem.size){
+                    return item
+                }
            }))
-            alert('item removido')
+            setItemStatus(true)
+            setTimeout(()=>{
+                setItemStatus(false)
+            },3000)
         }
          console.log(cartItems)
 
@@ -116,6 +123,7 @@ export function Modal({ handleOpenModal }) {
                 <div className="tracking-tight font-extrabold text-gray-900 dark:text-white">{`R$ ${totalPrice.toFixed(2)}`}</div>
                 <Button title={'COMPRAR'} />
             </div>
+              {cartItemStatus && <FailAlert title="Item Removido!"/>}
         </div>
     );
 }

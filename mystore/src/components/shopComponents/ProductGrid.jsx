@@ -3,12 +3,15 @@ import { getProducts } from "../../controllers/ProductController";
 import { useState, useEffect } from "react";
 import { useCartContext } from "../../contexts/CartProvider";
 import { useFilterProvider } from '../../contexts/FilterContext';
+import { FailAlert } from "../genericComponents/FailAlert";
+
 
 export const ProductGrid = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const { cartItems, setItems } = useCartContext();
-  const { CheckBoxFilter, FilterPrice, FilterSize } = useFilterProvider();
+  const {cartItems, setItems } = useCartContext();
+  const {CheckBoxFilter, FilterPrice, FilterSize } = useFilterProvider();
+  const [showAlert, setShowAlert ] = useState(false);
 
   //ADICIONAR PRODUTO AO CARRINHO
   function handleAddItem({ id, image, title, price }) {
@@ -37,7 +40,10 @@ export const ProductGrid = () => {
        
       }
     }else{
-      alert("SELECIONE UM TAMANHO")
+      setShowAlert(true)
+      setTimeout(()=>{
+        setShowAlert(false)
+      },3000)
     }
      FilterSize.setSizeFilter('');
   }
@@ -90,7 +96,9 @@ export const ProductGrid = () => {
   }, [allProducts, CheckBoxFilter]);
 
   return (
+    
     <div className="w-full md:w-3/4">
+      {showAlert && <FailAlert title="Selecione um Tamanho!"/>}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredProducts.map((product, index) => (
           <ProductCard
