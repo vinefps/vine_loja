@@ -1,23 +1,23 @@
 {
-    "builds": [
-      {
-        "src": "mystore/next.config.js",
-        "use": "@vercel/next"
-      },
-      {
-        "src": "backend/api/**/*.js",
-        "use": "@vercel/node"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "backend/api/$1"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "mystore/$1"
-      }
-    ]
-  }
-  
+  "builds": [
+    {
+      "src": "mystore/index.html",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "mystore/dist" }
+    },
+    {
+      "src": "backend/api/**/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/mystore/index.html"
+    }
+  ]
+}
