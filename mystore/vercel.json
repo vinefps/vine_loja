@@ -1,4 +1,23 @@
 {
-    "buildCommand": "npm run build",
-    "outputDirectory": "dist"
-}
+    "builds": [
+      {
+        "src": "mystore/next.config.js",
+        "use": "@vercel/next"
+      },
+      {
+        "src": "backend/api/**/*.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "backend/api/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "mystore/$1"
+      }
+    ]
+  }
+  

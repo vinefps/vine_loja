@@ -11,12 +11,12 @@ function authenticateToken(req, res, next) {
 
     if (!token) return res.status(401).send('Token is required');
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, id) => {
         if (err) {
             console.error("Erro na verificação do token:", err);
             return res.status(403).send('Invalid token');
         }
-        req.user = user;
+        req.id = id;
         next();
     });
 

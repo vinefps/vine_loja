@@ -8,13 +8,13 @@ const prisma = new PrismaClient();
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-    const { id, password } = req.body; // Use o ID no corpo da requisição
+    const { password, email } = req.body; 
 
     try {
-        // Use findUnique para buscar o usuário pelo id
+        // Use findUnique para buscar o usuário pelo email
         const foundUser = await prisma.user.findUnique({
             where: {
-                id: parseInt(id),  // Certifique-se de que o id seja um número
+                email: email
             },
         });
 
@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
             const match = await bcrypt.compare(password, foundUser.password);
 
             if (match) {
-                const token = jwt.sign({ user: foundUser.user }, process.env.JWT_SECRET, { expiresIn: '1h' });
+                const token = jwt.sign({ id: foundUser.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
                 res.status(200).json({ message: 'Login realizado com sucesso', token });
             } else {
                 res.status(401).send('Falha no login');

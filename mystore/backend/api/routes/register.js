@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 router.post('/', async (req, res) => {
     try {
-        const { user, password } = req.body;
+        const { user, password,email } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Armazenar o usuário diretamente no banco de dados usando Prisma
@@ -15,6 +15,7 @@ router.post('/', async (req, res) => {
             data: {
                 user: user,
                 password: hashedPassword,
+                email:email
             },
         });
 
@@ -28,4 +29,4 @@ router.post('/', async (req, res) => {
     }
 });
 
-module.exports = { router };
+module.exports = router;
