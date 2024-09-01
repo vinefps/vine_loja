@@ -1,5 +1,6 @@
 import React from "react";
 import { ProductCard } from "./ProductCard";
+import {Link} from 'react-router-dom'
 import {
   getWomenCategory,
   getMenCategory,
@@ -29,16 +30,20 @@ const ProductListing = () => {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {womenProducts.map((product, index) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-            />
+            <Link to="/shop">
+               <ProductCard
+                key={product.id}
+                product={product}
+              />
+            </Link>
           ))}
           {menProducts.map((product, index) => (
-            <ProductCard
+            <Link to="/shop">
+              <ProductCard
               key={product.id}
               product={product}
             />
+            </Link>
           ))}
         </div>
       </div>

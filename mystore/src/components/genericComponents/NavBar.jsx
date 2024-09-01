@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Modal } from './Modal';
+import User from '../genericComponents/User'
 
 const NavBar = () => {
   const [activeMenu, setActiveMenu] = useState("Home");
@@ -46,9 +47,9 @@ const NavBar = () => {
       {statusModal && <div id="modal-area" className="bg-gray-800 w-full h-full fixed top-0 left-0 z-20 bg-opacity-50 flex items-center justify-center">
         <Modal statusModal={statusModal} handleOpenModal={handleOpenModal}/>
       </div>}
-      <nav className="bg-white dark:bg-gray-800 shadow-lg">
+      <nav className="bg-white dark:bg-gray-800 shadow-lg w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
+          <div className="flex justify-between items-center h-16">
             <div className="flex">
               <div className="flex-shrink-0 flex items-center">
                 <svg className="md:hidden relative z-10 " width="40" height="80" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg" onClick={openNavigator}>
@@ -75,6 +76,12 @@ const NavBar = () => {
                     </Link>
                     <Link to="/about" onClick={() => handleMenuClick("About")}>
                       <li className={`${activeMenu === "About" ? "border-primary" : "border-transparent"} ml-2  text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}>SOBRE</li>
+                    </Link>
+                    <Link to="/about" onClick={() => handleMenuClick("Register")}>
+                      <li className={`${activeMenu === "Register" ? "border-primary" : "border-transparent"} ml-2  text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}>SOBRE</li>
+                    </Link>
+                    <Link to="/about" onClick={() => handleMenuClick("Login")}>
+                      <li className={`${activeMenu === "Login" ? "border-primary" : "border-transparent"} ml-2  text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}>SOBRE</li>
                     </Link>
                   </ul>
                 </div>
@@ -108,8 +115,23 @@ const NavBar = () => {
                 >
                   Contato
                 </Link>
+                <Link
+                  to="/register"
+                  className={`${activeMenu === "Register" ? "border-primary" : "border-transparent"} text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
+                  onClick={() => handleMenuClick("Register")}
+                >
+                  Cadastrar
+                </Link>
+                <Link
+                  to="/login"
+                  className={`${activeMenu === "Login" ? "border-primary" : "border-transparent"} text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
+                  onClick={() => handleMenuClick("Login")}
+                >
+                  Entrar
+                </Link>
               </div>
             </div>
+            <User />
             <div className="flex items-center">
               <button
                 id="darkModeToggle"
