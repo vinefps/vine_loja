@@ -76,10 +76,11 @@ export async function getMenCategory() {
   }
 }
 //-------------------------------------
+// Corrigido
 export async function getEletronicCategory() {
   try {
     const response = await fetch(
-      "https://fakestoreapi.com/products/category/eletronics",
+      "https://fakestoreapi.com/products/category/electronics",
     );
     if (!response.ok) {
       throw new Error("Erro ao buscar os produtos");
