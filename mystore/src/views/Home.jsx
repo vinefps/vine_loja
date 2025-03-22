@@ -10,7 +10,6 @@ export function Home() {
     const fetchCategories = async () => {
       try {
         const categories = await getCategories();
-        // Armazenar categorias no estado global ou processá-las se necessário
       } catch (error) {
         console.error("Erro ao buscar categorias:", error);
       }
@@ -27,7 +26,7 @@ export function Home() {
           <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white text-center mb-12">
             Produtos em Destaque
           </h2>
-          <ProductListing />
+          <ProductListing showTitle={false} />
         </div>
       </div>
       <Testimonials />
