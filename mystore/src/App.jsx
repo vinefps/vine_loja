@@ -1,3 +1,4 @@
+// App.jsx - Corrigido
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home } from "./views/Home";
@@ -18,13 +19,13 @@ export default function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path={`/products/:id`} element={<Products />} />
-          <Route path={`/about`} element={<About />} />
-          <Route path={`/shop`} element={<Shop />} />
-          <Route path={`/contact`} element={<Contact />} />
-          <Route path={`/login`} element={<Login />} />
-          <Route path={`/register`} element={<Register />} />
-          <Route path={`/auth`} element={<Auth />} />
+          <Route path="/products/:id" element={<Products />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/auth" element={<Auth />} />
         </Routes>
         <Footer />
       </Router>
